@@ -1,0 +1,47 @@
+version: '3.9'
+networks:
+  my-network:
+
+services:
+
+  paypaltest:
+    build: .
+    restart: always
+    environment:
+      DB_HOST: db-notificaciones
+      DB_PORT: 9094
+      DB_NAME: test
+      DB_USERNAME: "sa"
+      DB_PASSWORD: ""
+      CONFIG_SERVER: "config-server"
+      HOST_BD: "db-notificaciones"
+      EUREKA_SERVER: eureka-server
+      PUERTO_DB: "1521"
+      NOMBRE_DB: "~./micro"
+    networks:
+      - my-network
+    ports:
+      - "9000:8080"
+
+#  demo:
+#    build: ./demo
+#    restart: always
+#    environment:
+#      DB_HOST: db-usuarios
+#      DB_PORT: 9092
+#      DB_NAME: test
+#      DB_USERNAME: "sa"
+#      DB_PASSWORD: ""
+#      CONFIG_SERVER: "config-server"
+#      HOST_BD: "db-usuarios"
+#      EUREKA_SERVER: eureka-server
+#      PUERTO_DB: "1521"
+#      NOMBRE_DB: "~./micro"
+#    ports:
+#      - 8080:8080
+#    networks:
+#      - my-network
+#    depends_on:
+#      - db-usuarios
+
+#
